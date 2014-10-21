@@ -104,7 +104,10 @@ $firstRun = $true;
 $isClean = $false;
 
 $strUser = $env:UserName;
-$TempDir = $env:temp; # \AppData\Local\Temp
+
+# DEBUG
+# Temp directory is cleaned using GPO's
+#$TempDir = $env:temp; # \AppData\Local\Temp
 
 $mydocuments = [environment]::getfolderpath("MyDocuments");
 # Get profile path using the documents path.
@@ -131,9 +134,6 @@ while($true)
         ( ($isClean -ne $true) -and ($idleTimeMinutes -ge $maxIdleTime) )
        )
     {
-        # Clean Temp directory
-        CleanDirectory $TempDir
-
         $docExclusions = "My Music", "My Pictures", "My Videos"
 
         # Clean Documents folder
